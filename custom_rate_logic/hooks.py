@@ -87,11 +87,11 @@ app_license = "mit"
 
 # before_install = "custom_rate_logic.install.before_install"
 # after_install = "custom_rate_logic.install.after_install"
-
+after_install = "custom_rate_logic.install.after_install"
 # Uninstallation
 # ------------
 
-# before_uninstall = "custom_rate_logic.uninstall.before_uninstall"
+before_uninstall = "custom_rate_logic.uninstall.before_uninstall"
 # after_uninstall = "custom_rate_logic.uninstall.after_uninstall"
 
 # Integration Setup
@@ -237,3 +237,8 @@ app_license = "mit"
 # 	"Logging DocType Name": 30  # days to retain logs
 # }
 
+doctype_js = {
+    "Purchase Order": "public/js/purchase_order.js",
+    "Sales Order": "public/js/sales_order.js",
+     "Purchase Receipt": "public/js/purchase_receipt.js",
+}
