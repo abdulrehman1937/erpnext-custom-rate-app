@@ -1,4 +1,4 @@
-frappe.ui.form.on('Purchase Order Item', {
+    frappe.ui.form.on('Purchase Order Item', {
     item_code: function(frm, cdt, cdn) {
         // Wait for system to set the rate after item selection
         setTimeout(() => handleRateChange(frm, cdt, cdn), 500);
@@ -31,10 +31,10 @@ async function handleRateChange(frm, cdt, cdn) {
         const default_uom_cf = item.uoms.find(({ uom }) => uom === default_uom)?.conversion_factor || 1;
         
         // Calculate what the custom_rate_default should be based on current rate
-        const calculated = ((row.rate * default_uom_cf) / row.conversion_factor).toFixed(3);
+        const calculated = ((row.rate * default_uom_cf) / row.conversion_factor).toFixed(2);
 
         // Only update if different from current custom_rate_default
-        if (calculated !==  parseFloat(row.custom_rate_default).toFixed(3)) {
+        if (calculated !==  parseFloat(row.custom_rate_default).toFixed(2)) {
             console.log("Updating custom_rate_default to match rate:", calculated);
             frappe.model.set_value(cdt, cdn, 'custom_rate_default', calculated);
         }
