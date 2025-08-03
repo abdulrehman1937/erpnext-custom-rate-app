@@ -96,6 +96,29 @@ def create_sales_order_item_custom_fields():
         print("Custom Field 'Rate (Default UOM)' added to Sales Order Item.")
     else:
         print("Custom Field 'Rate (Default UOM)' already exists on Sales Order Item.")
+
+def create_quotation_item_custom_fields():
+    """
+    Adds 'custom_rate_default' to Quotation Item.
+    """
+    if not frappe.db.exists("Custom Field", {"dt": "Quotation Item", "fieldname": "custom_rate_default"}):
+        frappe.get_doc({
+            "doctype": "Custom Field",
+            "dt": "Quotation Item",
+            "label": "Rate (Default UOM)",
+            "fieldname": "custom_rate_default",
+            "fieldtype": "Currency",
+            "precision": 2, # Adjust precision as needed
+            "insert_after": "qty", # Or any other field you prefer
+            "description": "Rate in the Item's Default Unit Of Rate.",
+            "reqd": 1,
+            "read_only": 0
+        }).insert(ignore_permissions=True)
+        print("Custom Field 'Rate (Default UOM)' added to Quotation Item.")
+    else:
+        print("Custom Field 'Rate (Default UOM)' already exists on Quotation Item.")
+
+
 def move_custom_rate_field():
     """
     Move custom_rate_default field up using Property Setter for idx
